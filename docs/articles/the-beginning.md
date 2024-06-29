@@ -8,11 +8,15 @@ These series of articles are meant to showcase how to build a production ready T
 
 Initially, we'll build a small distributed app for voice controlled nutrition tracking, with a focus on quick and easy tracking. The idea is to have a simple app that allows you to track your meals and snacks, and get a quick overview of your daily intake in terms of macros and calories.
 
-This app will be built using a monorepo structure, with a NestJS API server, a Vite/React single page app, and a React Native mobile app.
+This app will be built using a monorepo structure, with a NestJS API server, a Vite/React single page app, and a React Native mobile app. We'll call it `Bite Track`.
 
 ### Purpose
 
 The main purpose of this project is to showcase how to build a production ready TypeScript-based monorepo step-by-step. We'll also cover how to setup a CI/CD pipeline using husky + GitHub Actions, and how to deploy the app to Vercel.
+
+Personally, the main purpose is to have fun building something useful, and to learn more about TypeScript, React, and NestJS. Also, I've been wanting to build a nutrition tracking app for a while, so this is a good opportunity to do it.
+
+In general, I wanted to document the development process through these articles as I build the app, and will code snippets, explanations, and tips on how to build a production ready app, with a focus on maintainability, scalability, and performance.
 
 ## First steps
 
@@ -42,6 +46,8 @@ bite-track/
 │   ├── logger/             => Isomorphic logger
 │   └── ui/                 => React/Vite/Tailwind/Storybook UI library
 ```
+
+> *You can build this from scratch as well, but you know, why would you*
 
 Let's also go to every package.json and rename the `name` field to `@bite-track/<package-name>` (remember to set the name in the root `package.json` as well). This is usually so we can publish them to npm later, and even though not needed for the apps, I like the standard.
 
