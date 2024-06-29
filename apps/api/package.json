@@ -1,5 +1,5 @@
 {
-  "name": "api",
+  "name": "@bite-track/api",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -12,19 +12,18 @@
     "test": "jest --detectOpenHandles"
   },
   "jest": {
-    "preset": "@repo/jest-presets/node"
+    "preset": "@bite-track/jest-presets/node"
   },
   "dependencies": {
-    "@repo/logger": "*",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "express": "^4.18.3",
     "morgan": "^1.10.0"
   },
   "devDependencies": {
-    "@repo/eslint-config": "*",
-    "@repo/jest-presets": "*",
-    "@repo/typescript-config": "*",
+    "@bite-track/eslint-config": "*",
+    "@bite-track/jest-presets": "*",
+    "@bite-track/typescript-config": "*",
     "@types/body-parser": "^1.19.5",
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",

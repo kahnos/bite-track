@@ -7,19 +7,28 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo run lint",
     "test": "turbo run test",
-    "typecheck": "turbo run typecheck"
+    "typecheck": "turbo run typecheck",
+    "prepare": "husky"
   },
   "devDependencies": {
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.7",
     "prettier": "^3.2.5",
     "turbo": "^2.0.6"
   },
   "engines": {
     "node": ">=18"
   },
-  "name": "kitchen-sink",
+  "name": "bite-track",
   "packageManager": "yarn@1.22.22",
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "node --max_old_space_size=4096 ./node_modules/eslint/bin/eslint.js --cache --fix --no-error-on-unmatched-pattern",
+      "prettier --write --ignore-unknown --cache"
+    ]
+  }
 }

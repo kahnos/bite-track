@@ -1,5 +1,5 @@
 {
-  "name": "admin",
+  "name": "@bite-track/web",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -12,14 +12,14 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "@repo/ui": "*"
+    "@bite-track/ui": "*"
   },
   "devDependencies": {
     "@types/react": "^18.2.62",
     "@types/react-dom": "^18.2.19",
     "@vitejs/plugin-react": "^4.2.1",
-    "@repo/eslint-config": "*",
-    "@repo/typescript-config": "*",
+    "@bite-track/eslint-config": "*",
+    "@bite-track/typescript-config": "*",
     "typescript": "^5.3.3",
     "vite": "^5.1.4"
   }

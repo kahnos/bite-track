@@ -1,38 +1,27 @@
-# Turborepo kitchen sink starter
+# 🍜 Bite Track 🥗
 
-This is an official starter Turborepo with multiple meta-frameworks all working in harmony and sharing packages.
-
-This example also shows how to use [Workspace Configurations](https://turbo.build/repo/docs/core-concepts/monorepos/configuring-workspaces).
-
-## Using this example
-
-Run the following command:
-
-```sh
-npx create-turbo@latest -e kitchen-sink
-```
+Monorepo based on `turborepo` used to build a small app for voice controlled nutrition tracking, mostly for fun and because it sounds useful to me.
 
 ## What's inside?
 
-This Turborepo includes the following packages and apps:
+This monorepo includes the following packages and apps:
 
 ### Apps and Packages
 
-- `api`: an [Express](https://expressjs.com/) server
-- `storefront`: a [Next.js](https://nextjs.org/) app
-- `admin`: a [Vite](https://vitejs.dev/) single page app
-- `blog`: a [Remix](https://remix.run/) blog
-- `@repo/eslint-config`: ESLint configurations used throughout the monorepo
-- `@repo/jest-presets`: Jest configurations
-- `@repo/logger`: isomorphic logger (a small wrapper around console.log)
-- `@repo/ui`: a dummy React UI library (which contains `<CounterButton>` and `<Link>` components)
-- `@repo/typescript-config`: tsconfig.json's used throughout the monorepo
+- `api`: an NestJS API server, based on hexagonal architecture
+- `web`: a [Vite](https://vitejs.dev/) single page app
+- `mobile`: a [React Native](https://reactnative.dev/) app 🚧
+- `@bite-track/eslint-config`: ESLint configurations used throughout the monorepo
+- `@bite-track/jest-presets`: Jest configurations
+- `@bite-track/logger`: isomorphic logger (a small wrapper around console.log)
+- `@bite-track/ui`: a dummy React UI library (which contains `<CounterButton>` and `<Link>` components)
+- `@bite-track/typescript-config`: tsconfig.json's used throughout the monorepo
 
 Each package and app is 100% [TypeScript](https://www.typescriptlang.org/).
 
 ### Utilities
 
-This Turborepo has some additional tools already setup for you:
+This monorepo has some additional tools already setup for you:
 
 - [TypeScript](https://www.typescriptlang.org/) for static type checking
 - [ESLint](https://eslint.org/) for code linting

@@ -1,5 +1,5 @@
 {
-  "name": "@repo/ui",
+  "name": "@bite-track/ui",
   "version": "0.0.0",
   "private": true,
   "license": "MIT",
@@ -19,12 +19,12 @@
     "test": "jest"
   },
   "jest": {
-    "preset": "@repo/jest-presets/browser"
+    "preset": "@bite-track/jest-presets/browser"
   },
   "devDependencies": {
-    "@repo/eslint-config": "*",
-    "@repo/jest-presets": "*",
-    "@repo/typescript-config": "*",
+    "@bite-track/eslint-config": "*",
+    "@bite-track/jest-presets": "*",
+    "@bite-track/typescript-config": "*",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.11.24",
     "@types/react": "^18.2.62",
