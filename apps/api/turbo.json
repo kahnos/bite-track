@@ -2,7 +2,8 @@
   "extends": ["//"],
   "tasks": {
     "build": {
-      "outputs": ["dist/**", "../../packages/api-client/src/**"]
+      "outputs": ["dist/**", "../../packages/api-client/src/**"],
+      "env": ["NODE_ENV", "API_PORT", "CALORIES_NINJA_URL", "CALORIES_NINJA_API_KEY"]
     }
   }
 }
