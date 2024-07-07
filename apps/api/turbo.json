@@ -2,12 +2,7 @@
   "extends": ["//"],
   "tasks": {
     "build": {
-      "outputs": ["dist/**"]
-    },
-    "gen:types": {
-      "inputs": ["nest-swagger-cli.json", "src/**/*.ts"],
-      "outputs": ["src/swagger.json"],
-      "dependsOn": ["^build"]
+      "outputs": ["dist/**", "../../packages/api-client/src/**"]
     }
   }
 }

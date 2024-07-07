@@ -1,0 +1,10 @@
+{
+  "extends": "@bite-track/typescript-config/base.json",
+  "compilerOptions": {
+    "baseUrl": "src",
+    "lib": ["ES2015"],
+    "outDir": "./dist"
+  },
+  "exclude": ["node_modules", "dist"],
+  "include": ["."]
+}

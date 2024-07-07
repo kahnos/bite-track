@@ -1,4 +1,4 @@
-import { ERROR_CODES, ErrorCode, ApiException as IApiException } from '@bite-track/types';
+import { ERROR_CODES, ErrorCode } from '@bite-track/types';
 import { HttpException, HttpStatus, Logger } from '@nestjs/common';
 import { ApiProperty } from '@nestjs/swagger';
 import { ValidationError } from 'class-validator';
@@ -28,7 +28,7 @@ export interface ApiExceptionParams {
  *
  * @description An exception that can be thrown to return a consistent error response to the client.
  */
-export class ApiException extends HttpException implements IApiException {
+export class ApiException extends HttpException {
   logger = new Logger(ApiException.name);
 
   @ApiProperty({

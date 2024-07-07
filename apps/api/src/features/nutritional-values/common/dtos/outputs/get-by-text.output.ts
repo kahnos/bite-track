@@ -1,16 +1,17 @@
 import { SERVING_SIZE_UNITS, ServingSizeUnit } from '@bite-track/types';
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptions } from '@nestjs/swagger';
 
 import { MacroTotalOutput } from '@/common/outputs/macro-total.output';
 
 import { NutritionalValue } from '../../domain/models/NutritionalValue';
 
-const API_PROPERTY_METADATA = {
+const API_PROPERTY_METADATA: Record<string, ApiPropertyOptions> = {
   size: {
     type: 'number',
     description: 'Serving size',
     example: 100,
     required: true,
+    minimum: 0,
   },
   unit: {
     description: 'Serving unit',

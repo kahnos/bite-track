@@ -1,9 +1,11 @@
 {
   "name": "@bite-track/api",
   "version": "0.0.0",
+  "main": "./dist/main.js",
+  "types": "./dist/main.d.ts",
   "private": true,
   "scripts": {
-    "build": "nest build",
+    "build": "nest build && yarn gen:types",
     "dev": "nest start --watch",
     "debug": "nest start --debug --watch",
     "start": "nest start",
@@ -43,6 +45,7 @@
     "@bite-track/jest-presets": "*",
     "@bite-track/types": "*",
     "@bite-track/typescript-config": "*",
+    "@hey-api/openapi-ts": "^0.48.2",
     "@nestjs/testing": "^10.3.9",
     "@types/body-parser": "^1.19.5",
     "@types/cors": "^2.8.17",

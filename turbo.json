@@ -28,7 +28,6 @@
     },
     "clean": {
       "cache": false
-    },
-    "gen:types": {}
+    }
   }
 }
