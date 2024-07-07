@@ -1,6 +1,6 @@
-const { resolve } = require("node:path");
+const { resolve } = require('node:path');
 
-const project = resolve(process.cwd(), "tsconfig.json");
+const project = resolve(process.cwd(), 'tsconfig.json');
 
 /*
  * This is a custom ESLint configuration for use a library
@@ -13,9 +13,11 @@ const project = resolve(process.cwd(), "tsconfig.json");
 
 module.exports = {
   extends: [
-    "@vercel/style-guide/eslint/browser",
-    "@vercel/style-guide/eslint/typescript",
-    "@vercel/style-guide/eslint/react",
+    '@vercel/style-guide/eslint/browser',
+    '@vercel/style-guide/eslint/typescript',
+    '@vercel/style-guide/eslint/react',
+    'eslint-config-turbo',
+    'plugin:storybook/recommended',
   ].map(require.resolve),
   parserOptions: {
     project,
@@ -23,17 +25,49 @@ module.exports = {
   globals: {
     JSX: true,
   },
-  plugins: ["only-warn"],
+  plugins: ['only-warn'],
+  parser: '@typescript-eslint/parser',
   settings: {
-    "import/resolver": {
+    'import/resolver': {
       typescript: {
-        project,
+        alwaysTryTypes: true,
+        project: ['packages/*/tsconfig.json', 'apps/*/tsconfig.json'],
+      },
+      webpack: {
+        config: {
+          resolve: {
+            alias: {
+              '@': path.resolve(__dirname, './src'),
+            },
+            extensions: ['.js', '.jsx', '.ts', '.tsx'],
+          },
+        },
       },
     },
+    react: {
+      version: 'detect',
+    },
   },
-  ignorePatterns: ["node_modules/", "dist/", ".eslintrc.js", "**/*.css"],
+  overrides: [
+    // Force ESLint to detect .tsx files
+    { files: ['*.js?(x)', '*.ts?(x)'] },
+    {
+      files: ['**/__tests__/**/*'],
+      env: {
+        jest: true,
+      },
+      plugins: ['jest'],
+    },
+  ],
+  ignorePatterns: ['node_modules/', 'dist/', '.eslintrc.js', '**/*.css'],
   // add rules configurations here
   rules: {
-    "import/no-default-export": "off",
+    'import/no-default-export': 'off',
+    'no-restricted-imports': [
+      'error',
+      {
+        patterns: ['.*'],
+      },
+    ],
   },
 };

@@ -13,7 +13,6 @@ This monorepo includes the following packages and apps:
 - `mobile`: a [React Native](https://reactnative.dev/) app 🚧
 - `@bite-track/eslint-config`: ESLint configurations used throughout the monorepo
 - `@bite-track/jest-presets`: Jest configurations
-- `@bite-track/logger`: isomorphic logger (a small wrapper around console.log)
 - `@bite-track/ui`: a dummy React UI library (which contains `<CounterButton>` and `<Link>` components)
 - `@bite-track/typescript-config`: tsconfig.json's used throughout the monorepo
 

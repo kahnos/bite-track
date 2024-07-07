@@ -1,4 +1,4 @@
-# API Architecture & Testing
+# NestJS API Architecture & Testing
 
 ## Introduction
 
@@ -26,16 +26,16 @@ Next, let's setup a folder structure for the API:
 
 ```bash
 mkdir -p apps/api/src/{adapters,features,common}
-mkdir -p apps/api/src/adapters/{nutritional-value/http,nutritional-value/cloud-storage,nutritional-entry/database}
-mkdir -p apps/api/src/features/nutrition-entry/common/{business-logic,web,mobile}
-mkdir -p apps/api/src/features/nutrition-entry/common/business-logic/{ports,domain}
-mkdir -p apps/api/src/features/nutrition-entry/common/domain/{factories,models,dtos}
+mkdir -p apps/api/src/adapters/{nutritional-values/http,nutritional-values/cloud-storage,nutritional-entries/database}
+mkdir -p apps/api/src/features/nutritional-entries/common/{business-logic,web,mobile}
+mkdir -p apps/api/src/features/nutritional-entries/common/business-logic/{ports,domain}
+mkdir -p apps/api/src/features/nutritional-entries/common/domain/{factories,models,dtos}
 mkdir -p apps/api/src/common/{constants,utils,enums}
 ```
 
 The -p flag will create the necessary parent directories if they don't exist.
 
-> *You can use any naming you like, just keep it consistent*
+> *You can use any naming convention you like, just keep it consistent*
 
 These folders will be used to separate the different layers of the application,  used as follows:
 
@@ -89,6 +89,33 @@ An explanation to the folders above:
 - `features/nutrition-entry/common/domain`: contains the domain logic of the nutrition entry feature, like factories, models, dtos, etc.
 - `features/nutrition-entry/*`: contains the client layers for * client (web/mobile) of the nutrition entry feature. This is where the controllers will be, as well as API metadata documentation.
 
-## Setting up our expectations AKA let's test this thing
+## Ensuring our expectations AKA let's test this thing
 
 Before we start writing code, let's setup some expectations for our API. We'll use Jest and Supertest for this, as it's the default testing framework for NestJS.
+
+We'll add the necessary dependencies:
+
+```bash
+yarn workspace @bite-track/api add -D @nestjs/testing
+```
+
+And create a test folder structure, including a common test provider for the API, a jest configuration file and a jest setup file:
+
+```bash
+mkdir -p apps/api/src/__tests__/common
+touch apps/api/src/__tests__/common/api-test.provider.ts
+touch apps/api/src/__tests__/jest.integrations.config.js
+touch apps/api/src/__tests__/jest.unit.config.js
+touch apps/api/src/__tests__/jest.setup.ts
+```
+
+As seen above, we'll use a different configuration for unit and integration tests, to make sure we're testing the right things in the right way. The setup file will be used to initiate any common configurations or utilities needed for the tests, and the test provider will be used to setup the API for the tests, centralizing the tearup and teardown logic plus optimizing usage as desired.
+
+Here's the described contents for each file, starting with the test provider:
+
+```typescript
+// apps/api/src/__tests__/common/api-test.provider.ts
+
+import { INestApplication } from '@nestjs/common';
+import { Test, TestingModule } from '@nestjs/testing';
+

@@ -1,0 +1,3 @@
+{
+  "extends": "@bite-track/typescript-config/base.json"
+}
