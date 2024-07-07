@@ -19,17 +19,19 @@ import { CaloriesNinjaNutritionalValueMapper } from '../mappers/nutritional-valu
  * Provides addresses from the ViaCEP API.
  */
 @Injectable()
-export class CaloriesNinjaNutritionalValueProvider implements HttpNutritionalValueProvider {
+export class CaloriesNinjaNutritionalValueProvider extends HttpNutritionalValueProvider {
   private readonly _logger = new Logger(CaloriesNinjaNutritionalValueProvider.name);
 
   constructor(
     @Inject(ConfigService)
     private readonly _configService: ConfigService,
-  ) {}
+  ) {
+    super();
+  }
 
   async getNutritionalValuesByText(params: GetNutritionalValuesByTextParams): Promise<NutritionalValue[]> {
     const { searchText } = params;
-    const nutritionData = await this._getNutritionFromApi({ searchText });
+    const nutritionData = await this.getNutritionFromApiByText({ searchText });
     const mappedNutritionData = CaloriesNinjaNutritionalValueMapper.toDomainArray(nutritionData);
 
     this._logger.log({
@@ -45,7 +47,7 @@ export class CaloriesNinjaNutritionalValueProvider implements HttpNutritionalVal
   async getNutritionalValuesByItems(params: GetNutritionalValuesByItemsParams): Promise<NutritionalValue[]> {
     const { items } = params;
     const searchText = this._getSearchQuery(items);
-    const nutritionData = await this._getNutritionFromApi({ searchText });
+    const nutritionData = await this.getNutritionFromApiByText({ searchText });
     const mappedNutritionData = CaloriesNinjaNutritionalValueMapper.toDomainArray(nutritionData);
 
     this._logger.log({
@@ -58,35 +60,7 @@ export class CaloriesNinjaNutritionalValueProvider implements HttpNutritionalVal
     return mappedNutritionData;
   }
 
-  /**
-   * Gets a query string to search for nutritional information for the given items.
-   * @param items The items to get nutritional information for.
-   * @returns The query string to search for nutritional information for the given items.
-   */
-  _getSearchQuery(items: NutritionalValueItemSearchParams[]): string {
-    let query = '';
-    for (const item of items) {
-      query += `${item.servingSize}${item.unit.toLowerCase()} ${item.name}, `;
-    }
-    return query;
-  }
-
-  /**
-   * Gets the headers to use in the HTTP request.
-   * @returns The headers to use in the HTTP request.
-   */
-  _getHttpHeaders(): Record<string, string> {
-    return {
-      [API_HEADERS.X_API_KEY]: this._configService.get(ENV_CONFIGURATION.CALORIES_NINJA_API_KEY) ?? '',
-    };
-  }
-
-  /**
-   * Gets nutritional information for given items, based on a full text search.
-   * @param params.searchText The text to search for nutritional information for.
-   * @returns The nutritional information for every item provided.
-   */
-  async _getNutritionFromApi(params: { searchText: string }): Promise<CaloriesNinjaGetNutritionResponse[]> {
+  async getNutritionFromApiByText(params: { searchText: string }): Promise<CaloriesNinjaGetNutritionResponse[]> {
     const { searchText } = params;
     const apiUrl = `${this._configService.get(ENV_CONFIGURATION.CALORIES_NINJA_URL)}/nutrition?query=${searchText}`;
 
@@ -106,7 +80,7 @@ export class CaloriesNinjaNutritionalValueProvider implements HttpNutritionalVal
         headers: this._getHttpHeaders(),
       });
 
-      if (!response.data?.items) {
+      if (!response.data?.items || response.data.items.length === 0) {
         throw new ApiException({
           message: 'No items found in response from CaloriesNinja',
           code: ERROR_CODES.NUTRITIONAL_VALUES__NOT_FOUND,
@@ -137,5 +111,28 @@ export class CaloriesNinjaNutritionalValueProvider implements HttpNutritionalVal
     });
 
     return nutritionData;
+  }
+
+  /**
+   * Gets a query string to search for nutritional information for the given items.
+   * @param items The items to get nutritional information for.
+   * @returns The query string to search for nutritional information for the given items.
+   */
+  private _getSearchQuery(items: NutritionalValueItemSearchParams[]): string {
+    let query = '';
+    for (const item of items) {
+      query += `${item.servingSize}${item.unit.toLowerCase()} ${item.name}, `;
+    }
+    return query;
+  }
+
+  /**
+   * Gets the headers to use in the HTTP request.
+   * @returns The headers to use in the HTTP request.
+   */
+  private _getHttpHeaders(): Record<string, string> {
+    return {
+      [API_HEADERS.X_API_KEY]: this._configService.get(ENV_CONFIGURATION.CALORIES_NINJA_API_KEY) ?? '',
+    };
   }
 }

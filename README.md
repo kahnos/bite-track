@@ -29,7 +29,6 @@ This monorepo has some additional tools already setup for you:
 
 ## TODO
 
-- [ ] Add tests to the API
 - [ ] Add a CI/CD pipeline
 - [ ] Add a mobile app
 - [ ] Add a voice recognition feature

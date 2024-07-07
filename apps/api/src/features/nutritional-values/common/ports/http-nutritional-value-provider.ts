@@ -44,6 +44,13 @@ export abstract class HttpNutritionalValueProvider {
    * @returns The nutritional information for every item provided.
    */
   abstract getNutritionalValuesByText(params: GetNutritionalValuesByTextParams): Promise<NutritionalValue[]>;
+
+  /**
+   * Gets nutritional information from the API.
+   * @param params.searchText The text to search for nutritional information for.
+   * @returns The nutritional information for the given text.
+   */
+  abstract getNutritionFromApiByText(params: { searchText: string }): Promise<any>;
 }
 
 export type { GetNutritionalValuesByItemsParams, NutritionalValueItemSearchParams, GetNutritionalValuesByTextParams };

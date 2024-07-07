@@ -46,10 +46,6 @@ afterAll(async () => {
 
   // Close apps
   await mobileTestAppProvider.closeApp();
-
-  if (global.gc) global.gc(); // run garbage collector after each suite is run
-
-  await new Promise<void>((resolve) => setTimeout(() => resolve(), 500)); // avoid jest open handle error
 });
 
 // ===== EXPORTS =====

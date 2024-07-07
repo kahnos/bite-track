@@ -3,7 +3,7 @@ import type { Config } from 'jest';
 const baseConfig: Config = {
   moduleFileExtensions: ['js', 'json', 'ts'],
   preset: 'ts-jest',
-  rootDir: '.',
+  rootDir: '..',
   transform: {
     '^.+\\.ts$': 'ts-jest',
   },
@@ -12,7 +12,7 @@ const baseConfig: Config = {
   testEnvironment: 'node',
   moduleNameMapper: {
     '#node-web-compat': './node-web-compat-node.js',
-    '^@/(.*)$': ['<rootDir>/src/$1'],
+    '^@/(.*)$': ['<rootDir>/$1'],
   },
   verbose: true,
 };

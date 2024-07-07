@@ -47,6 +47,42 @@ class NutritionalValuesItemsOutput {
 }
 
 /**
+ * Convert NutritionalValue items to output format
+ */
+const _itemsToOutput = (nutritionalValues: NutritionalValue[]): NutritionalValuesItemsOutput[] => {
+  return nutritionalValues.map((item) => ({
+    name: item.name,
+    macros: {
+      calories: item.calories,
+      carbohydrates: item.carbohydrates,
+      fats: item.fats,
+      proteins: item.proteins,
+    },
+    serving: {
+      size: item.servingSize,
+      unit: item.servingUnit,
+    },
+  }));
+};
+
+/**
+ * Calculate the total macro values for all items
+ */
+const _calculateTotals = (items: NutritionalValuesItemsOutput[]): MacroTotalOutput => {
+  return items.reduce(
+    (acc, item) => {
+      acc.calories += item.macros.calories;
+      acc.carbohydrates += item.macros.carbohydrates;
+      acc.fats += item.macros.fats;
+      acc.proteins += item.macros.proteins;
+
+      return acc;
+    },
+    { calories: 0, carbohydrates: 0, fats: 0, proteins: 0 },
+  );
+};
+
+/**
  * Output for the GetNutritionalValuesByText use case
  */
 export class GetNutritionalValuesByTextOutput {
@@ -56,43 +92,7 @@ export class GetNutritionalValuesByTextOutput {
   public items!: NutritionalValuesItemsOutput[];
 
   public constructor(nutritionalValues: NutritionalValue[]) {
-    this.items = this._itemsToOutput(nutritionalValues);
-    this.total = this._calculateTotals(this.items);
-  }
-
-  /**
-   * Convert NutritionalValue items to output format
-   */
-  _itemsToOutput(nutritionalValues: NutritionalValue[]): NutritionalValuesItemsOutput[] {
-    return nutritionalValues.map((item) => ({
-      name: item.name,
-      macros: {
-        calories: item.calories,
-        carbohydrates: item.carbohydrates,
-        fats: item.fats,
-        proteins: item.proteins,
-      },
-      serving: {
-        size: item.servingSize,
-        unit: item.servingUnit,
-      },
-    }));
-  }
-
-  /**
-   * Calculate the total macro values for all items
-   */
-  _calculateTotals(items: NutritionalValuesItemsOutput[]): MacroTotalOutput {
-    return items.reduce(
-      (acc, item) => {
-        acc.calories += item.macros.calories;
-        acc.carbohydrates += item.macros.carbohydrates;
-        acc.fats += item.macros.fats;
-        acc.proteins += item.macros.proteins;
-
-        return acc;
-      },
-      { calories: 0, carbohydrates: 0, fats: 0, proteins: 0 },
-    );
+    this.items = _itemsToOutput(nutritionalValues);
+    this.total = _calculateTotals(this.items);
   }
 }

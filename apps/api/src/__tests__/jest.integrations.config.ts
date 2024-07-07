@@ -6,7 +6,7 @@ const config: Config = {
   ...baseConfig,
   testRegex: '/.*\\.integration-spec\\.ts$',
   testTimeout: 600000,
-  setupFilesAfterEnv: ['./jest.setup.ts'],
+  setupFilesAfterEnv: ['./__tests__/jest.setup.ts'],
 };
 
 export default config;
