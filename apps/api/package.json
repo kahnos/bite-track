@@ -45,10 +45,10 @@
   },
   "devDependencies": {
     "@bite-track/eslint-config": "*",
-    "@bite-track/jest-presets": "*",
     "@bite-track/types": "*",
     "@bite-track/typescript-config": "*",
     "@hey-api/openapi-ts": "^0.48.2",
+    "@nestjs/cli": "^10.4.2",
     "@nestjs/testing": "^10.3.9",
     "@types/body-parser": "^1.19.5",
     "@types/cors": "^2.8.17",

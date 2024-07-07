@@ -13,12 +13,10 @@ This monorepo includes the following packages and apps:
 ### Apps and Packages
 
 - `api`: an NestJS API server, based on hexagonal architecture
-- `web`: a [Vite](https://vitejs.dev/) single page app
-- `mobile`: a [React Native](https://reactnative.dev/) app 🚧
+- `@bite-track/api-client`: a client library for the API, generated using `OpenAPI`, `@nestjs/swagger`, `turborepo` and `@hey-api/openapi-ts`.
 - `@bite-track/eslint-config`: ESLint configurations used throughout the monorepo
-- `@bite-track/jest-presets`: Jest configurations
-- `@bite-track/ui`: a dummy React UI library (which contains `<CounterButton>` and `<Link>` components)
 - `@bite-track/typescript-config`: tsconfig.json's used throughout the monorepo
+- `@bite-track/types`: shared types used throughout the monorepo
 
 Each package and app is 100% [TypeScript](https://www.typescriptlang.org/).
 
