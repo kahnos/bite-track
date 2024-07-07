@@ -2,6 +2,10 @@
 
 Monorepo based on `turborepo` used to build a small app for voice controlled nutrition tracking, mostly for fun and because it sounds useful to me.
 
+This is a work in progress, and I'm building it as I go. I'm using this project as a playground for anything I want to practice.
+
+The `/docs` folder contains some notes and ideas I have for future articles, detailing the process of building this app.
+
 ## What's inside?
 
 This monorepo includes the following packages and apps:
