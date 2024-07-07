@@ -37,14 +37,13 @@ For now, the folder structure will look like this:
 ```bash
 bite-track/
 ├── apps/
-│   ├── api/                => NestJS API server
-│   └── web/                => React/Vite/Tailwind/Storybook web app
+├────── api/                => NestJS API server
+├────── web/                => React/Vite/Tailwind/Storybook web app
 ├── packages/
-│   ├── config-eslint/       => Shared ESLint configurations
-│   ├── config-typescript/   => Shared TypeScript configurations
-│   ├── jest-presets/       => Shared Jest configurations
-│   ├── logger/             => Isomorphic logger
-│   └── ui/                 => React/Vite/Tailwind/Storybook UI library
+├────── config-eslint/       => Shared ESLint configurations
+├────── config-typescript/   => Shared TypeScript configurations
+├────── jest-presets/       => Shared Jest configurations
+└────── ui/                 => React/Vite/Tailwind/Storybook UI library
 ```
 
 > *You can build this from scratch as well, but you know, why would you*
@@ -66,7 +65,7 @@ Now, let's build everything:
 yarn build
 ```
 
-Take note of the scripts in the `package.json` files, as they are the ones that will be used to build, test, and run the apps and packages; supported by `turbo.json`, which is the configuration file for turborepo's tasks.
+Take note of the scripts in the `package.json` files, as they are the ones that will be used to build, test, and run the apps and packages; also supported by `turbo.json`, which is the configuration file for turborepo's tasks.
 
 These tasks enable you to run commands in parallel, and also to run them in a specific order, which is very useful for a monorepo with multiple packages and apps. It also takes care of caching, so if you run the same command again, it will be **much** faster.
 
@@ -74,7 +73,7 @@ For more info on tasks and how the cache works, see the [docs](https://turbo.bui
 
 ## Current shared packages
 
-So why do we have some shared packages in this monorepo? Let's take a look at each one of them:
+So why do we have some shared packages in this monorepo? We cloned this example to simplify some basic monorepo setup. Let's take a look at each of these packages and what they do:
 
 ### `@bite-track/eslint-config`
 
@@ -125,7 +124,91 @@ This monorepo has some additional tools already setup for you (baseline courtesy
 
 ## Maintaining some consistency
 
-To keep the codebase consistent in a simple manner for now, let's add `husky` and `lint-staged` to the root `package.json`:
+### Shared TypeScript configurations
+
+Now we'll modify `base.js` shared tsconfig file in `@bite-track/config-typescript`, as well as the vite and react-library configurations, to include some basic settings that we'll use throughout the monorepo. These can be seen [here](../../packages//config-typescript/).
+
+### Linting and formatting, keeping it pretty 💅
+
+#### Eslint and prettier
+
+We'll use eslint and prettier to enforce code quality and consistency throughout the monorepo. We already have the shared packages and the files we'll use, plus other packages are already extending from them accordingly in their configurations.
+
+Let's add a few more dependencies to `@bite-track/eslint-config`, for things like sorting imports, linting css, resolving paths and more:
+
+> 🚧 Note: This is a personal choice of packages and rules to maintain the consistency I like, each developer or team should likely decide this with time (just keep it standard!)
+
+```bash
+yarn workspace @bite-track/eslint-config add -D @ianvs/prettier-plugin-sort-imports @types/prettier @typescript-eslint/parser eslint-import-resolver-alias eslint-import-resolver-typescript eslint-import-resolver-webpack eslint-plugin-jest postcss prettier-plugin-tailwindcss
+```
+
+See the final files [here](../../packages/config-eslint/)
+
+// TODO: write actual contents
+
+#### Stylelint
+
+We'll configure stylelint by adding a dependency, a new file to the repo's root and a new key in the `package.json`:
+
+```bash
+yarn workspace @bite-track/eslint-config add -D stylelint stylelint-config-standard 
+```
+
+> .stylelintignore
+
+```.
+node_modules
+dist/
+storybook-static/
+coverage/
+```
+
+> package.json
+
+```json
+"stylelint": {
+  "extends": ["stylelint-config-standard"],
+  "rules": {
+    "at-rule-no-unknown": [ // Disallow unknown at-rules, but allow tailwind directives
+      true,
+      {
+        "ignoreAtRules": ["tailwind", "apply", "variants", "responsive", "screen"]
+      }
+    ],
+    "no-descending-specificity": null // Allow descending specificity
+  }
+},
+```
+
+#### Commitlint
+
+We'll also add a commitlint configuration to enforce conventional commits, let's keep that git history clean.
+
+In the root folder, run:
+
+```bash
+yarn add -D -W @commitlint/{cli,config-conventional}
+```
+
+And add the following to the root `package.json`:
+
+```json
+"commitlint": {
+  "extends": ["@commitlint/config-conventional"]
+}
+```
+
+Now we need to add a `commitlint.config.js` file to the root folder:
+
+> commitlint.config.js
+
+```js
+export default { extends: ['@commitlint/config-conventional'] };
+```
+
+### Husky and lint-staged, keeping the remote clean
+
+Some basic CI without any cloud pipelines for now, let's add `husky` and `lint-staged` to the root `package.json`, to ensure we don't push anything out of order:
 
 [`husky`](https://github.com/typicode/husky) is a tool that makes it easy to use githooks as if they were npm scripts. It's used to run tasks before committing or pushing code, to ensure that the code is linted and tested.
 
