@@ -26,3 +26,12 @@ This monorepo has some additional tools already setup for you:
 - [ESLint](https://eslint.org/) for code linting
 - [Jest](https://jestjs.io) test runner for all things JavaScript
 - [Prettier](https://prettier.io) for code formatting
+
+## TODO
+
+- [ ] Add tests to the API
+- [ ] Add a CI/CD pipeline
+- [ ] Add a mobile app
+- [ ] Add a voice recognition feature
+- [ ] Add a database
+- [ ] Add a cache layer
