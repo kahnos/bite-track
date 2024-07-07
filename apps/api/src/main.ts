@@ -3,10 +3,10 @@ import { NestFactory } from '@nestjs/core';
 import 'dotenv/config';
 
 import { ENV_CONFIGURATION, ENVIRONMENTS } from '@bite-track/types';
+import helmet from '@fastify/helmet';
 import { ValidationPipe } from '@nestjs/common';
 import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import helmet from 'helmet';
 import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
 
 import { ApiException } from '@/common/exceptions/api-exception';
@@ -25,10 +25,17 @@ async function bootstrap() {
   const isLocal = nodeEnv === ENVIRONMENTS.LOCAL || nodeEnv === ENVIRONMENTS.DEVELOPMENT;
 
   // ===== Security =====
-  app.use(
-    // see: https://github.com/helmetjs/helmet#how-it-works
-    helmet(),
-  );
+  // see: https://github.com/helmetjs/helmet#how-it-works
+  app.register(helmet, {
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: [`'self'`],
+        styleSrc: [`'self'`, `'unsafe-inline'`],
+        imgSrc: [`'self'`, 'data:', 'validator.swagger.io'],
+        scriptSrc: [`'self'`, `https: 'unsafe-inline'`],
+      },
+    },
+  });
   app.enableCors();
 
   // ===== Monitoring =====

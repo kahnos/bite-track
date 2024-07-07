@@ -18,6 +18,7 @@
     "preset": "@bite-track/jest-presets/node"
   },
   "dependencies": {
+    "@fastify/helmet": "^11.1.1",
     "@fastify/static": "^7.0.4",
     "@nestjs/common": "^10.3.9",
     "@nestjs/config": "^3.2.2",
