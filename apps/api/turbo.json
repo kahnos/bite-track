@@ -1,12 +1,13 @@
 {
-  "extends": [
-    "//"
-  ],
+  "extends": ["//"],
   "tasks": {
     "build": {
-      "outputs": [
-        "dist/**"
-      ]
+      "outputs": ["dist/**"]
+    },
+    "gen:types": {
+      "inputs": ["nest-swagger-cli.json", "src/**/*.ts"],
+      "outputs": ["src/swagger.json"],
+      "dependsOn": ["^build"]
     }
   }
 }

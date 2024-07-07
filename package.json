@@ -9,6 +9,7 @@
     "lint": "turbo run lint",
     "test": "turbo run test",
     "typecheck": "turbo run typecheck",
+    "gen:types": "turbo run gen:types",
     "prepare": "husky"
   },
   "devDependencies": {

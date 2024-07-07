@@ -11,7 +11,8 @@
     "clean": "rm -rf dist",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src/",
-    "test": "jest --detectOpenHandles"
+    "test": "jest --detectOpenHandles",
+    "gen:types": "nest start --config ./nest-swagger-cli.json"
   },
   "jest": {
     "preset": "@bite-track/jest-presets/node"
