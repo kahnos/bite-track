@@ -1,0 +1,26 @@
+# 🙏 Based on: https://www.tomray.dev/nestjs-docker-compose-postgres
+services:
+  api:
+    container_name: api
+    build:
+      dockerfile: ./apps/api/Dockerfile
+      context: .
+      # Only will build development stage from our dockerfile
+      target: development
+    volumes:
+      - .:/app
+    env_file:
+    - ./apps/api/.env
+    # Run a command against the development stage of the image
+    restart: always
+    command: yarn dev --filter=@bite-track/api
+    ports:
+      - 10000:10000
+    networks:
+      - bite-track-network
+
+# Define a network, which allows containers to communicate
+# with each other, by using their container name as a hostname
+networks:
+  bite-track-network:
+    name: bite-track-network

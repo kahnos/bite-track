@@ -4,12 +4,14 @@
     "build": "turbo run build",
     "clean": "turbo run clean",
     "dev": "turbo run dev",
+    "dev:docker": "docker-compose up -d",
     "debug": "turbo run debug",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo run lint",
     "test": "turbo run test",
     "typecheck": "turbo run typecheck",
     "gen:types": "turbo run gen:types",
+    "gen:docker": "docker build . -t bite-track-api -f apps/api/Dockerfile",
     "prepare": "husky"
   },
   "devDependencies": {

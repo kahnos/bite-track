@@ -70,7 +70,7 @@ async function bootstrap() {
   }
 
   const apiPort = process.env[ENV_CONFIGURATION.API_PORT] ?? 10000;
-  await app.listen(apiPort, () => {
+  await app.listen(apiPort, '0.0.0.0', () => {
     logger.log({
       message: `🍕 Running @bite-track/api at port: ${apiPort} 🍕`,
     });
