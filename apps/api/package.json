@@ -13,15 +13,11 @@
     "clean": "rm -rf dist",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src/",
-    "test": "jest --detectOpenHandles",
     "test:unit": "jest --config ./src/__tests__/jest.unit.config.ts --forceExit --passWithNoTests --json --outputFile=./src/__tests__/reports/unit-report.json",
     "test:unit:debug": "node --inspect-brk --max_old_space_size=4096 node_modules/.bin/jest --config ./src/__tests__/jest.unit.config.ts --forceExit --passWithNoTests --json --outputFile=./src/__tests__/reports/unit-report.json",
     "test:integration": "jest --config ./src/__tests__/jest.integrations.config.ts --forceExit --passWithNoTests --json --outputFile=./src/__tests__/reports/integration-report.json",
     "test:integration:debug": "node --inspect-brk --max_old_space_size=4096 node_modules/.bin/jest --config ./src/__tests__/jest.integrations.config.ts --runInBand --forceExit --passWithNoTests --json --outputFile=./src/__tests__/reports/integration-report.json",
     "gen:types": "nest start --config ./nest-swagger-cli.json"
-  },
-  "jest": {
-    "preset": "@bite-track/jest-presets/node"
   },
   "dependencies": {
     "@fastify/helmet": "^11.1.1",

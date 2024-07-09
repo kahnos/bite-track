@@ -1,8 +1,8 @@
 import { API_CLIENTS } from '@bite-track/types';
 import { NestFastifyApplication } from '@nestjs/platform-fastify';
 
-import { HttpNutritionalValueProvider } from '@/features/nutritional-values/common/ports/http-nutritional-value-provider';
-import { MobileNutritionalValuesControllerV1 } from '@/features/nutritional-values/mobile/mobile.nutritional-values.v1.controller';
+import { MobileNutritionalValuesControllerV1 } from '@/features/nutritional-values/controllers/mobile/mobile.nutritional-values.v1.controller';
+import { HttpNutritionalValueProvider } from '@/features/nutritional-values/ports/http-nutritional-value-provider';
 
 import { mobileTestAppProvider } from '@/__tests__/jest.setup';
 import { caloriesNinjaNutritionResponse } from '@/__tests__/mobile/nutritional-values/mocks/calories-ninja/nutrition-response.mock';
