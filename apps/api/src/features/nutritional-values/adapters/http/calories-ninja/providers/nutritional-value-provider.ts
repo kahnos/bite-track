@@ -4,13 +4,13 @@ import { ConfigService } from '@nestjs/config';
 import axios, { AxiosError } from 'axios';
 
 import { ApiException } from '@/common/exceptions/api-exception';
-import { NutritionalValue } from '@/features/nutritional-values/common/domain/models/NutritionalValue';
+import { NutritionalValue } from '@/features/nutritional-values/domain/models/NutritionalValue';
 import {
   GetNutritionalValuesByItemsParams,
   GetNutritionalValuesByTextParams,
   HttpNutritionalValueProvider,
   NutritionalValueItemSearchParams,
-} from '@/features/nutritional-values/common/ports/http-nutritional-value-provider';
+} from '@/features/nutritional-values/ports/http-nutritional-value-provider';
 
 import { CaloriesNinjaGetNutritionResponse } from '../interfaces/get-nutrition-response';
 import { CaloriesNinjaNutritionalValueMapper } from '../mappers/nutritional-value-mapper';

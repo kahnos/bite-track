@@ -1,4 +1,4 @@
-import { CaloriesNinjaGetNutritionResponse } from '@/features/nutritional-values/common/adapters/http/calories-ninja/interfaces/get-nutrition-response';
+import { CaloriesNinjaGetNutritionResponse } from '@/features/nutritional-values/adapters/http/calories-ninja/interfaces/get-nutrition-response';
 
 export const caloriesNinjaNutritionResponse: CaloriesNinjaGetNutritionResponse[] = [
   {

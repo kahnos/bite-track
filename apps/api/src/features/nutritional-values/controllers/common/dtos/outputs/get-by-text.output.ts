@@ -2,8 +2,7 @@ import { SERVING_SIZE_UNITS, ServingSizeUnit } from '@bite-track/types';
 import { ApiProperty, ApiPropertyOptions } from '@nestjs/swagger';
 
 import { MacroTotalOutput } from '@/common/outputs/macro-total.output';
-
-import { NutritionalValue } from '../../domain/models/NutritionalValue';
+import { NutritionalValue } from '@/features/nutritional-values/domain/models/NutritionalValue';
 
 const API_PROPERTY_METADATA: Record<string, ApiPropertyOptions> = {
   size: {

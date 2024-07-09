@@ -4,8 +4,7 @@ import { WinstonModule } from 'nest-winston';
 
 import { validateConfig } from '@/common/config/validate-config';
 import { winstonConfig } from '@/common/logging/nest-winstons.config';
-
-import { MobileNutritionalValuesModule } from './features/nutritional-values/mobile/mobile.nutritional-values.module';
+import { MobileNutritionalValuesModule } from '@/features/nutritional-values/controllers/mobile/mobile.nutritional-values.module';
 
 export const coreImports = [
   ConfigModule.forRoot({

@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 
-import { HttpNutritionalValueProvider } from '@/features/nutritional-values/common/ports/http-nutritional-value-provider';
+import { HttpNutritionalValueProvider } from '@/features/nutritional-values/ports/http-nutritional-value-provider';
 
 import { CaloriesNinjaNutritionalValueProvider } from './calories-ninja/providers/nutritional-value-provider';
 

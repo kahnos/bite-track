@@ -1,4 +1,4 @@
-import { GetNutritionalValuesByTextOutput } from '@/features/nutritional-values/common/dtos/outputs/get-by-text.output';
+import { GetNutritionalValuesByTextOutput } from '@/features/nutritional-values/controllers/common/dtos/outputs/get-by-text.output';
 
 export const getAllByTextResponse: GetNutritionalValuesByTextOutput = {
   items: [

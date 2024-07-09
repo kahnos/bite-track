@@ -1,6 +1,6 @@
 import { SERVING_SIZE_UNITS } from '@bite-track/types';
 
-import { NutritionalValue } from '@/features/nutritional-values/common/domain/models/NutritionalValue';
+import { NutritionalValue } from '@/features/nutritional-values/domain/models/NutritionalValue';
 
 import { CaloriesNinjaGetNutritionResponse } from '../interfaces/get-nutrition-response';
 

@@ -9,7 +9,7 @@ import {
 } from '@nestjs/swagger';
 
 import { ERROR_OUTPUT_METADATA } from '@/common/metadata/error-output.metadata';
-import { GetNutritionalValuesByTextOutput } from '@/features/nutritional-values/common/dtos/outputs/get-by-text.output';
+import { GetNutritionalValuesByTextOutput } from '@/features/nutritional-values/controllers/common/dtos/outputs/get-by-text.output';
 
 const RESPONSES_METADATA = {
   ...ERROR_OUTPUT_METADATA,

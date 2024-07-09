@@ -31,6 +31,7 @@ This monorepo has some additional tools already setup for you:
 
 ## TODO
 
+- https://docs.github.com/en/actions/publishing-packages/publishing-docker-images
 - [ ] Add a CI/CD pipeline
 - [ ] Add a mobile app
 - [ ] Add a voice recognition feature
