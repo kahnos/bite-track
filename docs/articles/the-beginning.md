@@ -26,7 +26,7 @@ For more information on turborepo, check out the [official documentation](https:
 
 There's several starter template example available in turborepo, but for this project we'll use the `kitchen-sink` template, which includes several starter apps and packages.
 
-From the apps, we'll keep the `api` and `admin` apps, and from the packages, we'll keep them all: `eslint-config`, `jest-presets`, `logger`, `ui`, and `typescript-config`. We'll rename `admin` to `web`, and use that as our simple frontend, which will be based on Vite and React.
+From the apps, we'll keep the `api` and `admin` apps, and from the packages, we'll keep them all: `eslint-config`, `logger`, `ui`, and `typescript-config`. We'll rename `admin` to `web`, and use that as our simple frontend, which will be based on Vite and React.
 
 ```bash
 npx create-turbo@latest --example bite-track
@@ -42,7 +42,6 @@ bite-track/
 ├── packages/
 ├────── config-eslint/       => Shared ESLint configurations
 ├────── config-typescript/   => Shared TypeScript configurations
-├────── jest-presets/       => Shared Jest configurations
 └────── ui/                 => React/Vite/Tailwind/Storybook UI library
 ```
 
@@ -95,13 +94,6 @@ This package contains the shared TypeScript configurations used throughout the m
 - `vite`                => used by the web app
 
 TypeScript is a JavaScript exception used for static type checking. It provides additional syntax for defining types or interfaces and mostly helps you avoid runtime errors.
-
-### `@bite-track/jest-presets`
-
-Jest is a delightful JavaScript Testing Framework with a focus on simplicity, and a massive ecosystem. It works with any project, and it's used to test JavaScript code. This package provides two sample Jest configurations:
-
-- `node`                => used by the API
-- `browser`             => used by the web app
 
 ### `@bite-track/ui`
 
