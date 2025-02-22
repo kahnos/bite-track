@@ -53,16 +53,16 @@ Let's also go to every package.json and rename the `name` field to `@bite-track/
 Then, let's cleanup everything and reset the dependencies, to make sure everything is working as expected. From the root folder, run:
 
 ```bash
-yarn clean
-yarn
+pnpm clean
+pnpm i
 ```
 
-This will re-create the `yarn.lock` file and `node_modules` folder, and install all dependencies.
+This will re-create the `pnpm-lock.json` file and `node_modules` folder, and install all dependencies.
 
 Now, let's build everything:
 
 ```bash
-yarn build
+pnpm build
 ```
 
 Take note of the scripts in the `package.json` files, as they are the ones that will be used to build, test, and run the apps and packages; also supported by `turbo.json`, which is the configuration file for turborepo's tasks.
@@ -139,7 +139,7 @@ Let's add a few more dependencies to `@bite-track/eslint-config`, for things lik
 > 🚧 Note: This is a personal choice of packages and rules to maintain the consistency I like, each developer or team should likely decide this with time (just keep it standard!)
 
 ```bash
-yarn workspace @bite-track/eslint-config add -D @ianvs/prettier-plugin-sort-imports @types/prettier @typescript-eslint/parser eslint-import-resolver-alias eslint-import-resolver-typescript eslint-import-resolver-webpack eslint-plugin-jest postcss prettier-plugin-tailwindcss
+pnpm -F @bite-track/eslint-config add -D @ianvs/prettier-plugin-sort-imports @types/prettier @typescript-eslint/parser eslint-import-resolver-alias eslint-import-resolver-typescript eslint-import-resolver-webpack eslint-plugin-jest postcss prettier-plugin-tailwindcss
 ```
 
 See the final files [here](../../packages/config-eslint/)
@@ -151,7 +151,7 @@ See the final files [here](../../packages/config-eslint/)
 We'll configure stylelint by adding a dependency, a new file to the repo's root and a new key in the `package.json`:
 
 ```bash
-yarn workspace @bite-track/eslint-config add -D stylelint stylelint-config-standard 
+pnpm -F @bite-track/eslint-config add -D stylelint stylelint-config-standard 
 ```
 
 > .stylelintignore
@@ -187,7 +187,7 @@ We'll also add a commitlint configuration to enforce conventional commits, let's
 In the root folder, run:
 
 ```bash
-yarn add -D -W @commitlint/{cli,config-conventional}
+pnpm add -D -W @commitlint/{cli,config-conventional}
 ```
 
 And add the following to the root `package.json`:
@@ -217,7 +217,7 @@ Some basic CI without any cloud pipelines for now, let's add `husky` and `lint-s
 From the root folder, run:
 
 ```bash
-yarn add -D -W husky lint-staged
+pnpm add -D -W husky lint-staged
 ```
 
 The `-D` flag is used to add the package as a dev dependency. The `-W` flag is used to add the package to the workspace root, so it's available to all packages and apps.
@@ -236,7 +236,7 @@ This simplifies the setup of `husky` by creating the `.husky` folder, with a sam
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-yarn
+pnpm
 npx lint-staged
 ```
 
@@ -264,7 +264,7 @@ This will run `eslint` and `prettier` on all staged files before committing, and
 Prior to commiting, let's make sure we have `eslint` and `prettier` installed in the root folder:
 
 ```bash
-yarn add -D -W eslint@^8 prettier
+pnpm add -D -W eslint@^8 prettier
 ```
 
 > Note: We're using `eslint@^8` because of config file compatibility. If you're using version 9 or above, make sure to adjust the config file accordingly.
@@ -272,13 +272,13 @@ yarn add -D -W eslint@^8 prettier
 Let's also add it to the `@bite-track/eslint-config` package:
 
 ```bash
-yarn workspace @bite-track/eslint-config add -D eslint prettier
+pnpm -F @bite-track/eslint-config add -D eslint prettier
 ```
 
 Finally, let's test it out! Run the following command and let's commit our progress:
 
 ```bash
-yarn
+pnpm
 git add .
 git commit -m "feat: add monorepo setup, husky and lint-staged"
 ```

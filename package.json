@@ -1,6 +1,7 @@
 {
   "private": true,
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "build": "turbo run build",
     "clean": "turbo run clean",
     "dev": "turbo run dev",
@@ -21,11 +22,10 @@
     "turbo": "^2.0.6"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=18 <19"
   },
   "name": "bite-track",
-  "packageManager": "yarn@1.22.22",
-  "workspaces": ["apps/*", "packages/*"],
+  "packageManager": "pnpm@10.4.1",
   "lint-staged": {
     "*.{js,ts,tsx}": [
       "node --max_old_space_size=4096 ./node_modules/eslint/bin/eslint.js --cache --fix --no-error-on-unmatched-pattern",
@@ -34,5 +34,8 @@
   },
   "commitlint": {
     "extends": ["@commitlint/config-conventional"]
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["@nestjs/core", "esbuild"]
   }
 }

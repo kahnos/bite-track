@@ -5,7 +5,7 @@
   "types": "./dist/main.d.ts",
   "private": true,
   "scripts": {
-    "build": "nest build && yarn gen:types",
+    "build": "nest build && pnpm gen:types",
     "dev": "nest start --watch",
     "debug": "nest start --debug --watch",
     "start": "nest start",
@@ -44,9 +44,9 @@
     "winston": "^3.13.0"
   },
   "devDependencies": {
-    "@bite-track/eslint-config": "*",
-    "@bite-track/types": "*",
-    "@bite-track/typescript-config": "*",
+    "@bite-track/eslint-config": "workspace:*",
+    "@bite-track/types": "workspace:*",
+    "@bite-track/typescript-config": "workspace:*",
     "@hey-api/openapi-ts": "^0.48.2",
     "@nestjs/cli": "^10.4.2",
     "@nestjs/testing": "^10.3.9",

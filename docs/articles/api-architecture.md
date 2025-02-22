@@ -19,7 +19,7 @@ Fun.
 Noe, let's install the necessary NestJS dependencies, as mentioned in the [docs](https://docs.nestjs.com/):
 
 ```bash
-yarn workspace @bite-track/api add @nestjs/core @nestjs/common rxjs reflect-metadata
+pnpm -F @bite-track/api add @nestjs/core @nestjs/common rxjs reflect-metadata
 ```
 
 Next, let's setup a folder structure for the API:
@@ -96,7 +96,7 @@ Before we start writing code, let's setup some expectations for our API. We'll u
 We'll add the necessary dependencies:
 
 ```bash
-yarn workspace @bite-track/api add -D @nestjs/testing
+pnpm -F @bite-track/api add -D @nestjs/testing
 ```
 
 And create a test folder structure, including a common test provider for the API, a jest configuration file and a jest setup file:

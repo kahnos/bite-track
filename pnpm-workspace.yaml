@@ -1,0 +1,11 @@
+packages:
+  # include packages in sub-folders (e.g. apps/ and packages/)
+  - 'apps/**'
+  - 'packages/**'
+  # if required, exclude some directories
+  - '!**/__test__/**'
+  - '!**/test/**'
+  - '!**/dist/**'
+  - '!**/node_modules/**'
+  - '!**/storybook-static/**'
+  - '!**/coverage/**'
